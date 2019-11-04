@@ -45,6 +45,7 @@ CMakeLists.txt
 *.su
 *.idb
 *.pdb
+*.gcno
 
 # Kernel Module Compile Results
 *.mod*
