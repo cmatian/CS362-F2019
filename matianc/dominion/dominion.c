@@ -137,14 +137,14 @@ int playCardAmbassador(int card, int choice1, int choice2, struct gameState *sta
 {
     int i, j = 0; //used to check if player has enough cards to discard
 
-    if (choice2 > 2 && choice2 < 0)
+    if (choice2 > 2 || choice2 < 0)
     {
         return -1;
     }
 
     if (choice1 == handPos)
     {
-        return -1;
+        return -2;
     }
 
     for (i = 0; i < state->handCount[currentPlayer]; i++)
@@ -156,11 +156,8 @@ int playCardAmbassador(int card, int choice1, int choice2, struct gameState *sta
     }
     if (j < choice2)
     {
-        return -1;
+        return -3;
     }
-
-    if (DEBUG)
-        printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
 
     //increase supply count for choosen card by amount being discarded
     state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;

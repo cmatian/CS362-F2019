@@ -1,6 +1,6 @@
 // Christopher Matian
 // 11/4/2019 - OSU Fall Quarter 2019
-// Unit Test 1 - Minion Card
+// Unit Test 2 - Minion Card
 
 /** Notes
  * 
@@ -148,8 +148,6 @@ int main()
     G.testingCounter2 = 0;
 
     playCardMinion(0, 0, 1, &G, 4, player); // play the card for choice 2
-
-    printf("TestingCounter2: %d\n", G.testingCounter2);
 
     // If the counter is 0 it means that the other player's cards were not discarded.
     // We expect that since this is the first turn, effectively the other number of players will have to discard
