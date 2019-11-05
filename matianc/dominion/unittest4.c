@@ -1,6 +1,6 @@
 // Christopher Matian
 // 11/4/2019 - OSU Fall Quarter 2019
-// Unit Test 4 - Ambassador Card
+// Unit Test 4 - Tribute Card
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -60,7 +60,7 @@ int main()
     G.discardCount[player2] = 0;
     G.deckCount[player2] = 1;
 
-    playCardTribute(tributeRevealed, &G, player1, player2);
+    playCardTribute(tribute, tributeRevealed, &G, player1, player2);
 
     // The deck count should be decremented by 1
     if (matian_assert(G.deckCount[player2] == 0))
@@ -87,7 +87,7 @@ int main()
     G.discardCount[player2] = 1;
     G.deckCount[player2] = 0;
 
-    playCardTribute(tributeRevealed, &G, player1, player2);
+    playCardTribute(tribute, tributeRevealed, &G, player1, player2);
 
     if (matian_assert(G.discardCount[player2] == 0))
     {
@@ -115,7 +115,7 @@ int main()
     G.discardCount[player2] = 2;
     G.deckCount[player2] = 2;
 
-    playCardTribute(tributeRevealed, &G, player1, player2);
+    playCardTribute(tribute, tributeRevealed, &G, player1, player2);
 
     // Should only add 2 coins at first
     if (matian_assert(G.coins == numCoins + 2))

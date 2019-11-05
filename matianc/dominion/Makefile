@@ -48,6 +48,13 @@ unittestresults:
 	./unittest4 >> unittestresults.out
 	printf "\n\nGCOV Results:\n\n">> unittestresults.out
 	gcov -b -f dominion.c | grep playCardTribute -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
+
+	printf "*****************  Unit Test 5 *****************\n\n" >> unittestresults.out
+	gcc -o unittest5 unittest5.c dominion.c rngs.c $(CFLAGS)
+	./unittest5 >> unittestresults.out
+	printf "\n\nGCOV Results:\n\n">> unittestresults.out
+	gcov -b -f dominion.c | grep playCardMine -A 4 >> unittestresults.out
 	printf "\n************************************************\n\n\n" >> unittestresults.out     
 
 player: player.c interface.o

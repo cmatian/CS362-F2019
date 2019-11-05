@@ -190,7 +190,7 @@ int playCardAmbassador(int card, int choice1, int choice2, struct gameState *sta
 }
 
 /* Tribute Card Execution */
-int playCardTribute(int *tributeRevealedCards, struct gameState *state, int currentPlayer, int nextPlayer)
+int playCardTribute(int card, int *tributeRevealedCards, struct gameState *state, int currentPlayer, int nextPlayer)
 {
     int i;
 
@@ -279,12 +279,16 @@ int playCardMine(int choice1, int choice2, struct gameState *state, int handPos,
 
     if (choice2 > treasure_map || choice2 < curse)
     {
-        return -1;
+        return -2;
     }
 
+    // This exception handler is incorrectly implemented by the creator. The rules state that you
+    // should not be able to exchange a copper for a gold. It also states that you should be allowed
+    // to exchange a copper for a copper. The current behavior allows the former and prevents the latter.
     if ((getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2))
     {
-        return -1;
+        state->testingCounter1 = 1;
+        return -3;
     }
 
     gainCard(choice2, state, 2, currentPlayer);
@@ -1263,7 +1267,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case tribute:
         /* New Function - Added in Assignment 2 */
-        return playCardTribute(tributeRevealedCards, state, currentPlayer, nextPlayer);
+        return playCardTribute(card, tributeRevealedCards, state, currentPlayer, nextPlayer);
 
     case ambassador:
         /* New Function - Added in Assignment 2 */
