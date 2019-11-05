@@ -36,6 +36,8 @@ CMakeLists.txt
 # Executables
 *.exe
 *.out
+# unittestresults
+!unittestresults.out
 *.app
 *.i*86
 *.x86_64
