@@ -50,7 +50,7 @@ int playCardBaron(int card, int choice1, struct gameState *state, int handPos, i
                 {
                     gainCard(estate, state, 0, currentPlayer);
 
-                    state->supplyCount[estate]--; //Decrement estates
+                    state->supplyCount[estate]--; //Decrement estates - this is actually a bug since gainCard will already decrement the supplyCount of estates.
                     if (supplyCount(estate, state) == 0)
                     {
                         isGameOver(state);
@@ -97,6 +97,7 @@ int playCardMinion(int card, int choice1, int choice2, struct gameState *state, 
         while (numHandCards(state) > 0)
         {
             discardCard(handPos, currentPlayer, state, 0);
+            state->testingCounter1++;
         }
 
         //draw 4
@@ -108,7 +109,7 @@ int playCardMinion(int card, int choice1, int choice2, struct gameState *state, 
         //other players discard hand and redraw if hand size > 4
         for (int i = 0; i < state->numPlayers; i++)
         {
-            if (i == currentPlayer)
+            if (i != currentPlayer)
             {
                 if (state->handCount[i] > 4)
                 {
@@ -116,6 +117,7 @@ int playCardMinion(int card, int choice1, int choice2, struct gameState *state, 
                     while (state->handCount[i] > 0)
                     {
                         discardCard(handPos, i, state, 0);
+                        state->testingCounter2++;
                     }
 
                     //draw 4
@@ -331,8 +333,7 @@ int *kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
     return k;
 }
 
-int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
-                   struct gameState *state)
+int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 {
     int i;
     int j;
@@ -1265,7 +1266,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case tribute:
         /* New Function - Added in Assignment 2 */
-        return playCardTribute(*tributeRevealedCards, state, currentPlayer, nextPlayer);
+        return playCardTribute(tributeRevealedCards, state, currentPlayer, nextPlayer);
 
     case ambassador:
         /* New Function - Added in Assignment 2 */
