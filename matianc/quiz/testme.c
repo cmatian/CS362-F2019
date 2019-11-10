@@ -13,11 +13,13 @@ char inputChar()
 char *inputString()
 {
   // TODO: rewrite this function
-
+  char lib[4] = {
+      'r', 'e', 's', 't'};
   static char string[6];
   for (int i = 0; i < 5; i++)
   {
-    string[i] = (rand() % 16) + 101;
+    int randChar = (rand() % 4);
+    string[i] = lib[randChar];
   }
   string[5] = '\0';
 
