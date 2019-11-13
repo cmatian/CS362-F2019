@@ -1265,7 +1265,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case tribute:
         /* New Function - Added in Assignment 2 */
-        return playCardTribute(*tributeRevealedCards, state, currentPlayer, nextPlayer);
+        return playCardTribute(tributeRevealedCards, state, currentPlayer, nextPlayer);
 
     case ambassador:
         /* New Function - Added in Assignment 2 */
