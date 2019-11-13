@@ -83,7 +83,7 @@ int playCardBaron(int card, int choice1, struct gameState *state, int handPos, i
 /* Minion Card Execution */
 int playCardMinion(int card, int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer)
 {
-
+    state->numActions++;
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
 
@@ -97,18 +97,20 @@ int playCardMinion(int card, int choice1, int choice2, struct gameState *state, 
         while (numHandCards(state) > 0)
         {
             discardCard(handPos, currentPlayer, state, 0);
+            state->inc1++;
         }
 
         //draw 4
         for (int i = 0; i < 4; i++)
         {
             drawCard(currentPlayer, state);
+            state->inc2++;
         }
 
         //other players discard hand and redraw if hand size > 4
         for (int i = 0; i < state->numPlayers; i++)
         {
-            if (i == currentPlayer)
+            if (i != currentPlayer)
             {
                 if (state->handCount[i] > 4)
                 {
@@ -116,12 +118,14 @@ int playCardMinion(int card, int choice1, int choice2, struct gameState *state, 
                     while (state->handCount[i] > 0)
                     {
                         discardCard(handPos, i, state, 0);
+                        state->inc3++;
                     }
 
                     //draw 4
                     for (int j = 0; j < 4; j++)
                     {
                         drawCard(i, state);
+                        state->inc4++;
                     }
                 }
             }

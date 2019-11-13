@@ -21,17 +21,39 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-randomtestresults:
+randomtest1: dominion.o rngs.o
 	# First Random Test
-	printf "*****************  Rand Test 1 *****************\n\n" >> randomtestresults.out
-	gcc -o randomtestcard1 randomtestcard1.c dominion.c rngs.c $(CFLAGS)
+	printf "***************** Rand Test 1 *****************\n\n" >> randomtestresults.out
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
 	./randomtestcard1 >> randomtestresults.out
-	printf "\n\nGCOV Results:\n\n">> randomtestresults.out
+	printf "\n\nBaron GCOV Results:\n\n">> randomtestresults.out
 	gcov -b -f dominion.c | grep playCardBaron -A 4 >> randomtestresults.out
 	printf "\n************************************************\n\n\n" >> randomtestresults.out
 
+randomtest2: dominion.o rngs.o
 	# Second Random Test
+	printf "***************** Rand Test 2 *****************\n\n" >> randomtestresults.out
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2 >> randomtestresults.out
+	printf "\n\nMinion GCOV Results:\n\n">> randomtestresults.out
+	gcov -b -f dominion.c | grep playCardMinion -A 4 >> randomtestresults.out
+	printf "\n************************************************\n\n\n" >> randomtestresults.out
 
+randomtestresults: dominion.o rngs.o
+	# First Random Test
+	printf "***************** Rand Test 1 *****************\n\n" >> randomtestresults.out
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard1 >> randomtestresults.out
+	printf "\n\nBaron GCOV Results:\n\n">> randomtestresults.out
+	gcov -b -f dominion.c | grep playCardBaron -A 4 >> randomtestresults.out
+	printf "\n************************************************\n\n\n" >> randomtestresults.out
+	# Second Random Test
+	printf "***************** Rand Test 2 *****************\n\n" >> randomtestresults.out
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2 >> randomtestresults.out
+	printf "\n\nMinion GCOV Results:\n\n">> randomtestresults.out
+	gcov -b -f dominion.c | grep playCardMinion -A 4 >> randomtestresults.out
+	printf "\n************************************************\n\n\n" >> randomtestresults.out
 	# Third Random Test
 
 

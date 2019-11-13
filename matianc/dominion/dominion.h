@@ -73,6 +73,13 @@ struct gameState
     int discardCount[MAX_PLAYERS];
     int playedCards[MAX_DECK];
     int playedCardCount;
+
+    // Test Variables
+    int inc1;
+    int inc2;
+    int inc3;
+    int inc4;
+    int inc5;
 };
 
 /* All functions return -1 on failure, and DO NOT CHANGE GAME STATE;

@@ -31,7 +31,7 @@
  *          - I am a human being with a finite amount of time on this planet.
  *          - I have a CS 372 FTP project that I want to work on as well :-)
  *          - I will scale the number and mention the recommended iter value in the documentation. I'm looking 
- *            to just hit 90% or more branch coverage.
+ *            to just hit 90% or more branch and line coverage.
  *      - Player always starts with 5 cards in their hand
  *      - Player always has a Baron card in their hand (this is a given)
  * 
@@ -126,6 +126,19 @@ int main()
         else
         {
             printf("FAIL - Expected: supplyCount[estate] == %d, Actual: supplyCount[estate] == %d\n", precountEstate - 1, game.supplyCount[estate]);
+        }
+
+        if (choice == 0 && game.handCount[player] == 6)
+        {
+            printf("PASS - Expected: handCount == 6, Actual: handCount = %d\n", game.handCount[player]);
+        }
+        else if (choice == 1)
+        {
+            printf("SKIP - Choice 0 was not evaluated during this loop.\n");
+        }
+        else
+        {
+            printf("FAIL - Expected: handCount == 6, Actual: handCount = %d\n", game.handCount[player]);
         }
     }
 };
