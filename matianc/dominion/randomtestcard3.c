@@ -83,9 +83,9 @@ int main()
 
         // Precount of certain variables
         int precountCoins = game.coins;
-        int precountBuys = game.numBuys;
+        // int precountBuys = game.numBuys;
         int precountAction = game.numActions;
-        int precountOtherPlayerHands = ((numPlayers - 1) * 5);
+        // int precountOtherPlayerHands = ((numPlayers - 1) * 5);
 
         // Set up the counters
         game.inc1 = 0;
