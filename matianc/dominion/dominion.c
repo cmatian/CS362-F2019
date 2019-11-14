@@ -201,7 +201,7 @@ int playCardTribute(int *tributeRevealedCards, struct gameState *state, int curr
 
     if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1)
     {
-        if (state->deckCount[nextPlayer] > 1)
+        if (state->deckCount[nextPlayer] > 0)
         {
             tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer] - 1];
             state->deckCount[nextPlayer]--;
@@ -254,7 +254,7 @@ int playCardTribute(int *tributeRevealedCards, struct gameState *state, int curr
     {
         if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold)
         { //Treasure cards
-            state->coins += 4;
+            state->coins += 2;
         }
 
         else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall)

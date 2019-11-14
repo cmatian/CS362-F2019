@@ -39,6 +39,15 @@ randomtest2: dominion.o rngs.o
 	gcov -b -f dominion.c | grep playCardMinion -A 4 >> randomtestresults.out
 	printf "\n************************************************\n\n\n" >> randomtestresults.out
 
+randomtest3: dominion.o rngs.o
+	# Third Random Test
+	printf "***************** Rand Test 3 *****************\n\n" >> randomtestresults.out
+	gcc -o randomtestcard3 -g randomtestcard3.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard3 >> randomtestresults.out
+	printf "\n\nTribute GCOV Results:\n\n">> randomtestresults.out
+	gcov -b -f dominion.c | grep playCardTribute -A 4 >> randomtestresults.out
+	printf "\n************************************************\n\n\n" >> randomtestresults.out
+
 randomtestresults: dominion.o rngs.o
 	# First Random Test
 	printf "***************** Rand Test 1 *****************\n\n" >> randomtestresults.out
@@ -55,9 +64,12 @@ randomtestresults: dominion.o rngs.o
 	gcov -b -f dominion.c | grep playCardMinion -A 4 >> randomtestresults.out
 	printf "\n************************************************\n\n\n" >> randomtestresults.out
 	# Third Random Test
-
-
-
+	printf "***************** Rand Test 3 *****************\n\n" >> randomtestresults.out
+	gcc -o randomtestcard3 -g randomtestcard3.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard3 >> randomtestresults.out
+	printf "\n\nTribute GCOV Results:\n\n">> randomtestresults.out
+	gcov -b -f dominion.c | grep playCardTribute -A 4 >> randomtestresults.out
+	printf "\n************************************************\n\n\n" >> randomtestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
