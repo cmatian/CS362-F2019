@@ -50,7 +50,7 @@ int playCardBaron(int card, int choice1, struct gameState *state, int handPos, i
                 {
                     gainCard(estate, state, 0, currentPlayer);
 
-                    state->supplyCount[estate]--; //Decrement estates
+                    state->supplyCount[estate]--; //Decrement estates - this is actually a bug since gainCard will already decrement the supplyCount of estates.
                     if (supplyCount(estate, state) == 0)
                     {
                         isGameOver(state);
@@ -139,14 +139,14 @@ int playCardAmbassador(int card, int choice1, int choice2, struct gameState *sta
 {
     int i, j = 0; //used to check if player has enough cards to discard
 
-    if (choice2 > 2 && choice2 < 0)
+    if (choice2 > 2 || choice2 < 0)
     {
         return -1;
     }
 
     if (choice1 == handPos)
     {
-        return -1;
+        return -2;
     }
 
     for (i = 0; i < state->handCount[currentPlayer]; i++)
@@ -158,11 +158,8 @@ int playCardAmbassador(int card, int choice1, int choice2, struct gameState *sta
     }
     if (j < choice2)
     {
-        return -1;
+        return -3;
     }
-
-    if (DEBUG)
-        printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
 
     //increase supply count for choosen card by amount being discarded
     state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
@@ -195,7 +192,7 @@ int playCardAmbassador(int card, int choice1, int choice2, struct gameState *sta
 }
 
 /* Tribute Card Execution */
-int playCardTribute(int *tributeRevealedCards, struct gameState *state, int currentPlayer, int nextPlayer)
+int playCardTribute(int card, int *tributeRevealedCards, struct gameState *state, int currentPlayer, int nextPlayer)
 {
     int i;
 
@@ -284,12 +281,16 @@ int playCardMine(int choice1, int choice2, struct gameState *state, int handPos,
 
     if (choice2 > treasure_map || choice2 < curse)
     {
-        return -1;
+        return -2;
     }
 
+    // This exception handler is incorrectly implemented by the creator. The rules state that you
+    // should not be able to exchange a copper for a gold. It also states that you should be allowed
+    // to exchange a copper for a copper. The current behavior allows the former and prevents the latter.
     if ((getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2))
     {
-        return -1;
+        state->testingCounter1 = 1;
+        return -3;
     }
 
     gainCard(choice2, state, 2, currentPlayer);
@@ -335,8 +336,7 @@ int *kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
     return k;
 }
 
-int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
-                   struct gameState *state)
+int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 {
     int i;
     int j;

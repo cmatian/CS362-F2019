@@ -36,6 +36,8 @@ CMakeLists.txt
 # Executables
 *.exe
 *.out
+# unittestresults
+!unittestresults.out
 *.app
 *.i*86
 *.x86_64
@@ -47,6 +49,8 @@ CMakeLists.txt
 *.idb
 *.pdb
 *.gcno
+*.gcda
+*.gcov
 
 # Kernel Module Compile Results
 *.mod*
