@@ -63,7 +63,7 @@ int main()
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &G);
 
-    G.testingCounter1 = 0;
+    G.inc1 = 0;
 
     // Set player hand
     G.hand[player][0] = curse;
@@ -92,7 +92,7 @@ int main()
     // }
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &G);
-    G.testingCounter1 = 0;
+    G.inc1 = 0;
     // Set player hand
     G.hand[player][0] = curse;
     G.hand[player][1] = copper;
@@ -121,7 +121,7 @@ int main()
     // }
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &G);
-    G.testingCounter1 = 0;
+    G.inc1 = 0;
     // Set player hand
     G.hand[player][0] = curse;
     G.hand[player][1] = copper;
@@ -150,7 +150,7 @@ int main()
     // }
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &G);
-    G.testingCounter1 = 0; // reset testing counter (required)
+    G.inc1 = 0; // reset testing counter (required)
     // Set player hand
     G.hand[player][0] = curse;
     G.hand[player][1] = copper;
@@ -164,20 +164,20 @@ int main()
 
     // If we don't hit the return function OR our counter has no value, then we know that the function failed to handle
     // this behavior correctly...
-    if (matian_assert(result == -3 || G.testingCounter1 == 1))
+    if (matian_assert(result == -3 || G.inc1 == 1))
     {
-        printf("\tTest %d Success - Exception handling - can't exchange copper for gold: Result = %d, Counter = %d\n", test, result, G.testingCounter1);
+        printf("\tTest %d Success - Exception handling - can't exchange copper for gold: Result = %d, Counter = %d\n", test, result, G.inc1);
     }
     else
     {
-        printf("\tTest %d Failure - Exception handling failed - exchanged copper for gold: Result = %d, Counter = %d\n", test, result, G.testingCounter1);
+        printf("\tTest %d Failure - Exception handling failed - exchanged copper for gold: Result = %d, Counter = %d\n", test, result, G.inc1);
     }
     test++;
 
     // Test Five: Verify that the player has only 1 silver card in their hand
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &G);
-    G.testingCounter1 = 0; // reset testing counter
+    G.inc1 = 0; // reset testing counter
 
     // Set player hand
     G.hand[player][0] = copper;
@@ -213,7 +213,7 @@ int main()
     // We know for certain that when the mine card is played, there should be at least 3 copper cards in hand
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &G);
-    G.testingCounter1 = 0; // reset testing counter
+    G.inc1 = 0; // reset testing counter
 
     // Set player hand
     G.hand[player][0] = copper;
