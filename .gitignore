@@ -2,6 +2,11 @@
 cmake-build-debug
 CMakeLists.txt
 .vscode
+*.gcov
+*.gcno
+*.gcda
+*.out
+*.exe
 
 # Prerequisites
 *.d
