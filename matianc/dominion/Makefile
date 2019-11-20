@@ -71,6 +71,38 @@ randomtestresults: dominion.o rngs.o
 	gcov -b -f dominion.c | grep playCardTribute -A 4 >> randomtestresults.out
 	printf "\n************************************************\n\n\n" >> randomtestresults.out
 
+unittest1:
+	printf "*****************  Unit Test 1 *****************\n\n" >> unittestresults.out
+	gcc -o unittest1 unittest1.c dominion.c rngs.c $(CFLAGS)
+	./unittest1 >> unittestresults.out
+	printf "\n\nGCOV Results:\n\n">> unittestresults.out
+	gcov -b -f dominion.c | grep playCardBaron -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out 
+
+unittest2:
+	printf "*****************  Unit Test 2 *****************\n\n" >> unittestresults.out
+	gcc -o unittest2 unittest2.c dominion.c rngs.c $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	printf "\n\nGCOV Results:\n\n">> unittestresults.out
+	gcov -b -f dominion.c | grep playCardMinion -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
+
+unittest3:
+	printf "*****************  Unit Test 3 *****************\n\n" >> unittestresults.out
+	gcc -o unittest3 unittest3.c dominion.c rngs.c $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	printf "\n\nGCOV Results:\n\n">> unittestresults.out
+	gcov -b -f dominion.c | grep playCardAmbassador -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
+
+unittest4:
+	printf "*****************  Unit Test 4 *****************\n\n" >> unittestresults.out
+	gcc -o unittest4 unittest4.c dominion.c rngs.c $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	printf "\n\nGCOV Results:\n\n">> unittestresults.out
+	gcov -b -f dominion.c | grep playCardTribute -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
+
 unittestresults:
 	printf "*****************  Unit Test 1 *****************\n\n" >> unittestresults.out
 	gcc -o unittest1 unittest1.c dominion.c rngs.c $(CFLAGS)
@@ -114,4 +146,4 @@ player: player.c interface.o
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.exe

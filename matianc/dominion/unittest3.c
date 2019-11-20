@@ -56,7 +56,7 @@ int main()
     G.hand[player][3] = curse;      // Set up 2 curse cards
     G.hand[player][4] = ambassador; // Set player one's hand to have a ambassador card for playing
 
-    result = playCardAmbassador(0, 0, 3, &G, 4, 0); // Pass a result for choice2 that is out of bounds
+    result = playCardAmbassador(0, 3, 4, &G, player); // Pass a result for choice2 that is out of bounds
 
     // We altered the ambassador function slightly to provide different error codes so that we can achieve better coverage and
     // determine where errors occurred in the negative return cases.
@@ -78,7 +78,7 @@ int main()
     G.hand[player][3] = curse;      // Set up curse cards
     G.hand[player][4] = ambassador; // Set player one's hand to have a ambassador card for playing
 
-    result = playCardAmbassador(0, 4, 2, &G, 4, 0); // Pass a result for choice1 that is equal to the handPos
+    result = playCardAmbassador(4, 2, 4, &G, player); // Pass a result for choice1 that is equal to the handPos
 
     // If the result is -2 it means that the result was validated correctly.
     if (matian_assert(result == -2))
@@ -98,7 +98,8 @@ int main()
     G.hand[player][3] = curse;      // Set up 1 curse cards
     G.hand[player][4] = ambassador; // Set player one's hand to have a ambassador card for playing
 
-    result = playCardAmbassador(0, 3, 2, &G, 4, 0); // Pass a result for choice1 and try to discard more than there are cards
+    // Pass a result for choice1 and try to discard more than there are cards
+    result = playCardAmbassador(3, 2, 4, &G, player); // Pass a result for choice1 and try to discard more than there are cards
 
     // If the result is -3 it means that the result was validated correctly and prevented us from discarding more than the actual number of cards in the player's hand.
     if (matian_assert(result == -3))
@@ -119,7 +120,7 @@ int main()
     G.hand[player][4] = ambassador; // Set player one's hand to have a ambassador card for playing
 
     int discardCount = G.discardCount[1];
-    playCardAmbassador(0, 3, 1, &G, 4, 0);
+    playCardAmbassador(3, 1, 4, &G, player);
 
     if (matian_assert(G.discardCount[1] > discardCount))
     {

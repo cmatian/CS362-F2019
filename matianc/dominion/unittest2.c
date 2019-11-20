@@ -64,9 +64,9 @@ int main()
     initializeGame(numPlayers, k, seed, &G);
 
     G.hand[player][4] = minion;
-    playCardMinion(0, 0, 0, &G, 4, player); // play the card
+    playCardMinion(0, 0, &G, player, 4);
 
-    if ((result = matian_assert(G.numActions > 1)))
+    if ((result = matian_assert(G.numActions == 2)))
     {
         printf("\tTest %d Success - numActions is incremented: numAction = %d\n", test, G.numActions);
     }
@@ -83,9 +83,9 @@ int main()
     G.hand[player][4] = minion;
     coins = G.coins;
 
-    playCardMinion(0, 1, 0, &G, 4, player); // play the card for choice 1
+    playCardMinion(1, 0, &G, player, 4);
 
-    if ((result = matian_assert(G.coins >= coins + 2)))
+    if ((result = matian_assert(G.coins == coins + 2)))
     {
         printf("\tTest %d Success - coins are incremented by 2: coins = %d, oldcoins = %d\n", test, G.coins, coins);
     }
@@ -101,7 +101,7 @@ int main()
 
     G.hand[player][4] = minion;
 
-    playCardMinion(0, 1, 0, &G, 4, player); // play the card
+    playCardMinion(1, 0, &G, player, 4);
 
     if ((result = matian_assert(G.hand[player][4] == -1)))
     {
@@ -118,17 +118,17 @@ int main()
     initializeGame(numPlayers, k, seed, &G);
 
     G.hand[player][4] = minion;
-    G.testingCounter1 = 0;
+    G.inc1 = 0;
 
-    playCardMinion(0, 0, 1, &G, 4, player); // play the card for choice 2
+    playCardMinion(0, 1, &G, player, 4);
 
-    if ((result = matian_assert(G.testingCounter1 > 0 && G.testingCounter1 <= 4)))
+    if ((result = matian_assert(G.inc1 > 0 && G.inc1 <= 4)))
     {
-        printf("\tTest %d Success - player's hand is discarded no more than 4 times: Total = %d\n", test, G.testingCounter1);
+        printf("\tTest %d Success - player's hand is discarded no more than 4 times: Total = %d\n", test, G.inc1);
     }
     else
     {
-        printf("\tTest %d Failure - player's hand is discarded more than 4 times: Total = %d\n", test, G.testingCounter1);
+        printf("\tTest %d Failure - player's hand is discarded more than 4 times: Total = %d\n", test, G.inc1);
     }
     test++;
 
@@ -145,20 +145,20 @@ int main()
     G.handCount[1] = 5; // Set his handCount manually
 
     G.hand[player][4] = minion;
-    G.testingCounter2 = 0;
+    G.inc2 = 0;
 
-    playCardMinion(0, 0, 1, &G, 4, player); // play the card for choice 2
+    playCardMinion(0, 1, &G, player, 4);
 
     // If the counter is 0 it means that the other player's cards were not discarded.
     // We expect that since this is the first turn, effectively the other number of players will have to discard
     // up to 15 cards total (2 players = 1 * 5, 3 players = 2 * 5, 4 players = 3 * 5)
-    if ((result = matian_assert(G.testingCounter2 > 0 && G.testingCounter2 <= (numPlayers - 1) * 5)))
+    if ((result = matian_assert(G.inc2 > 0 && G.inc2 <= (numPlayers - 1) * 5)))
     {
-        printf("\tTest %d Success - Enemy's hand is discarded correctly (0 > n <= (numPlayers - 1) * 5): Total = %d\n", test, G.testingCounter2);
+        printf("\tTest %d Success - Enemy's hand is discarded correctly (0 > n <= (numPlayers - 1) * 5): Total = %d\n", test, G.inc2);
     }
     else
     {
-        printf("\tTest %d Failure - Enemy's hand is not discarded correctly (0 > n <= (numPlayers - 1) * 5): Total = %d\n", test, G.testingCounter2);
+        printf("\tTest %d Failure - Enemy's hand is not discarded correctly (0 > n <= (numPlayers - 1) * 5): Total = %d\n", test, G.inc2);
     }
     test++;
 
@@ -175,7 +175,8 @@ int main()
 
     G.hand[player][4] = minion; // Set player one's hand to have a minion card for playing
     int handCount = G.handCount[player];
-    playCardMinion(0, 0, 1, &G, 4, player); // play the card for choice 2
+
+    playCardMinion(0, 1, &G, player, 4);
 
     if ((result = matian_assert(G.handCount[player] < handCount)))
     {

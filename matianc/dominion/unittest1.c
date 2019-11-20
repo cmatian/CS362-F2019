@@ -56,15 +56,15 @@ int main()
     // Set player hand to have the baron card
     G.hand[player][4] = baron;
     // Play the baron card
-    playCardBaron(1, 0, &G, 4, player);
+    playCardBaron(0, &G, player);
 
     if ((result = matian_assert(G.numBuys == 2))) // numBuys should be 2
     {
-        printf("\t- Test %d Success - numBuys is incremented: numBuys = %d\n", test, G.numBuys);
+        printf("\t- Test %d Success - numBuys is incremented once: numBuys = %d\n", test, G.numBuys);
     }
     else
     {
-        printf("\t- Test %d Failure - numBuys is not incremented: numBuys = %d\n", test, G.numBuys);
+        printf("\t- Test %d Failure - numBuys is not incremented once: numBuys = %d\n", test, G.numBuys);
     }
     test++;
 
@@ -80,7 +80,7 @@ int main()
 
     // Play the baron card
     G.coins = 0;
-    playCardBaron(1, 1, &G, 4, player);
+    playCardBaron(1, &G, player);
 
     if ((result = matian_assert(G.coins == 4)))
     {
@@ -103,7 +103,7 @@ int main()
     G.hand[player][4] = baron;
 
     // Play the baron card
-    playCardBaron(1, 1, &G, 4, player);
+    playCardBaron(1, &G, player);
 
     if ((result = matian_assert(G.handCount[player] == 4))) // Result should be 4 because the player has 5 cards
     {
@@ -127,7 +127,7 @@ int main()
     // Get supply count of estates before execution
     supply = G.supplyCount[estate];
     // Play the baron card
-    playCardBaron(1, 1, &G, 4, player);
+    playCardBaron(1, &G, player);
 
     // Result should be less than original estate supply count by 1. We compare it like this because in theory a supplyCount
     // of 27 + 1 will equal to the original supply count value of 28. If its decremented more than once then the evaluation will fail.
@@ -153,7 +153,7 @@ int main()
     // Get supply count of estates before execution
     supply = G.supplyCount[estate];
     // Play the baron card
-    playCardBaron(1, 0, &G, 4, player);
+    playCardBaron(0, &G, player);
 
     // Result should be less than original estate supply count by 1. We compare it like this because in theory a supplyCount
     // of 27 + 1 will equal to the original supply count value of 28. If its decremented more than once then the evaluation will fail.

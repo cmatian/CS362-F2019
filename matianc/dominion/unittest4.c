@@ -60,7 +60,7 @@ int main()
     G.discardCount[player2] = 0;
     G.deckCount[player2] = 1;
 
-    playCardTribute(tribute, tributeRevealed, &G, player1, player2);
+    playCardTribute(0, tributeRevealed, &G, player1, player2);
 
     // The deck count should be decremented by 1
     if (matian_assert(G.deckCount[player2] == 0))
@@ -87,7 +87,7 @@ int main()
     G.discardCount[player2] = 1;
     G.deckCount[player2] = 0;
 
-    playCardTribute(tribute, tributeRevealed, &G, player1, player2);
+    playCardTribute(0, tributeRevealed, &G, player1, player2);
 
     if (matian_assert(G.discardCount[player2] == 0))
     {
@@ -115,7 +115,7 @@ int main()
     G.discardCount[player2] = 2;
     G.deckCount[player2] = 2;
 
-    playCardTribute(tribute, tributeRevealed, &G, player1, player2);
+    playCardTribute(0, tributeRevealed, &G, player1, player2);
 
     // Should only add 2 coins at first
     if (matian_assert(G.coins == numCoins + 2))
