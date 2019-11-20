@@ -86,7 +86,7 @@ int main()
         // Print out the Deck Size and the current iteration
         printf("\nBaron Card Iteration: %d, Choice: %d, Card 3: %s\n", i + 1, choice,
                (game.hand[player][3] == estate ? "estate" : "copper"));
-        playCardBaron(0, choice, &game, 4, player); // Play the Baron Card
+        playCardBaron(choice, &game, player); // Play the Baron Card
 
         // Print Statements
         // First IF - Numbuys is incremented to 2

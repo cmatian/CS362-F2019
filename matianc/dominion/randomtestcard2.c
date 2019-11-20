@@ -114,7 +114,7 @@ int main()
         printf("\nMinion Card Iteration: %d, Choice: %d, Players: %d\n", i + 1, (choice1 == 1 ? 1 : 2), numPlayers);
 
         // Play the card with the randomized choices
-        playCardMinion(0, choice1, choice2, &game, 4, player);
+        playCardMinion(choice1, choice2, &game, player, 4);
 
         // Is numActions incremented for the current player round
         if (game.numActions == 2)

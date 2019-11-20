@@ -135,7 +135,7 @@ int main()
         // printf("Player 2's Deck Top Card: %d, Just Below: %d, Just Below 2: %d\n", game.deck[player2][game.deckCount[player2] - 1],
         //        game.deck[player2][game.deckCount[player2] - 2], game.deck[player2][game.deckCount[player2] - 3]);
 
-        playCardTribute(tributeRevealedCards, &game, player, player2);
+        playCardTribute(0, tributeRevealedCards, &game, player, player2);
 
         // printf("Tribute Array: %d, %d\n", tributeRevealedCards[0], tributeRevealedCards[1]);
         // printf("Player 1 Handcount: %d\n", game.handCount[player]);

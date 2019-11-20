@@ -1015,7 +1015,7 @@ int playCardMine(int choice1, int choice2, int handPos, struct gameState *state,
   //discardCard(handPos, currentPlayer, state, 0);
 
   //discard trashed card
-  for (int i = 0; i < state->handCount[currentPlayer]; i + 2)
+  for (int i = 0; i < state->handCount[currentPlayer]; i++)
   {
     if (state->hand[currentPlayer][i] == j)
     {

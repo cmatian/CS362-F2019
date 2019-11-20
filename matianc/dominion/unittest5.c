@@ -12,8 +12,8 @@
 // playCardMine(int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer)
 //      CHOICE 1 = INDEX OF CARD TO EXCHANGE
 //      CHOICE 2 = ENUM VALUE OF CARD WE WANT TO EXCHANGE FOR
-//      STATE = &G
 //      HANDPOS = INDEX OF THE MINE CARD IN OUR HAND
+//      STATE = &G
 //      CURRENTPLAYER = PLAYER
 
 // Custom Assert Function for result testing
@@ -73,7 +73,7 @@ int main()
     G.hand[player][4] = mine;
 
     // Pass curse card for choice1 - doesn't matter if the player has it or not for this test
-    result = playCardMine(curse, silver, &G, 4, player);
+    result = playCardMine(0, silver, 4, &G, player);
 
     if (matian_assert(result == -1))
     {
@@ -101,7 +101,7 @@ int main()
     G.hand[player][4] = mine;
 
     // Pass copper card idx for choice1 and -1 for choice 2.
-    result = playCardMine(3, -1, &G, 4, player);
+    result = playCardMine(3, -1, 4, &G, player);
 
     if (matian_assert(result == -2))
     {
@@ -130,7 +130,7 @@ int main()
     G.hand[player][4] = mine;
 
     // Pass copper card for choice1 and copper for choice 2.
-    result = playCardMine(1, copper, &G, 4, player);
+    result = playCardMine(1, copper, 4, &G, player);
 
     // It should allow this behavior which means we're looking for a result of 0 from the function return
     if (matian_assert(result == 0))
@@ -160,7 +160,7 @@ int main()
 
     // Pass copper card idx for choice1 and gold for choice 2.
     // The expected behavior is that the function will prevent the exchange
-    result = playCardMine(1, gold, &G, 4, player);
+    result = playCardMine(1, gold, 4, &G, player);
 
     // If we don't hit the return function OR our counter has no value, then we know that the function failed to handle
     // this behavior correctly...
@@ -187,7 +187,7 @@ int main()
     G.hand[player][4] = copper;
 
     // Pass copper card idx for choice1 and silver for choice 2.
-    result = playCardMine(4, silver, &G, 3, player);
+    result = playCardMine(4, silver, 3, &G, player);
 
     // count number of silver cards
     int silverCount = 0;
@@ -223,7 +223,7 @@ int main()
     G.hand[player][4] = mine;
 
     // Pass copper card idx for choice1 and silver for choice 2.
-    result = playCardMine(0, silver, &G, 4, player);
+    result = playCardMine(0, silver, 4, &G, player);
 
     // count number of copper cards
     int copperCount = 0;
