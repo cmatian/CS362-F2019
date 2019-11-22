@@ -6,26 +6,17 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
-playdom: dominion.o playdom.c
-	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
-#To run playdom you need to entere: ./playdom <any integer number> like ./playdom 10*/
+unit2: dominion.o unit2.c
+	gcc -o unit2 unit2.c -g dominion.o rngs.o $(CFLAGS)
 
-testDrawCard: testDrawCard.c dominion.o rngs.o
-	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
+unit3: dominion.o unit3.c
+	gcc -o unit3 unit3.c -g dominion.o rngs.o $(CFLAGS)
 
-interface.o: interface.h interface.c
-	gcc -c interface.c -g  $(CFLAGS)
+unit4: dominion.o unit4.c
+	gcc -o unit4 unit4.c -g dominion.o rngs.o $(CFLAGS)
 
-runtests: testDrawCard 
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
-
-
-player: player.c interface.o
-	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
-
-all: playdom player 
+unit5: dominion.o unit5.c
+	gcc -o unit5 unit5.c -g dominion.o rngs.o $(CFLAGS)
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o unit2.exe unit2 unit3.exe unit3 unit4.exe unit4 unit5.exe unit5 player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
