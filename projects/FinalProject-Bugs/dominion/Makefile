@@ -6,9 +6,9 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
-unit1:
+unit1: dominion.o unit1.c
 	printf "*****************  Unit Test 1 *****************\n\n" >> unittestresults.out
-	gcc -o unit1 unit1.c -g dominion.c interface.c rngs.c $(CFLAGS)
+	gcc -o unit1 unit1.c -g dominion.c rngs.c interface.c $(CFLAGS)
 	./unit1 >> unittestresults.out
 	printf "\n\nGCOV Results:\n">> unittestresults.out
 	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
@@ -26,9 +26,9 @@ unit4: dominion.o unit4.c
 unit5: dominion.o unit5.c
 	gcc -o unit5 unit5.c -g dominion.o rngs.o $(CFLAGS)
 
-unit6:
+unit6: dominion.o unit6.c
 	printf "*****************  Unit Test 6 *****************\n\n" >> unittestresults.out
-	gcc -o unit6 unit6.c -g dominion.c rngs.c $(CFLAGS)
+	gcc -o unit6 unit6.c -g dominion.c rngs.c interface.c $(CFLAGS)
 	./unit6 >> unittestresults.out
 	printf "\n\nGCOV Results:\n">> unittestresults.out
 	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
@@ -66,7 +66,7 @@ unit11:
 	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
 	printf "\n************************************************\n\n\n" >> unittestresults.out
 
-unittestresults: unit1 #unit2 unit3 unit4 unit5 unit6 unit7 unit9 unit10 unit11
+unittestresults: unit1 unit6 #unit2 unit3 unit4 unit5 unit6 unit7 unit9 unit10 unit11
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.exe

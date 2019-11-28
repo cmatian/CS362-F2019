@@ -3,7 +3,6 @@
 #include "interface.h"
 #include <assert.h>
 #include "rngs.h"
-
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -58,14 +57,14 @@ int main()
         }
 
         // handCount should stay the same since replacing, but not really that relevant to this test case
-        if (state.handCount[currentPlayer] == test.handCount[currentPlayer])
-        {
-            printf("Pass: handCount Unchanged\n");
-        }
-        else
-        {
-            printf("Fail: handCount NOT Unchanged\n");
-        }
+        // if (state.handCount[currentPlayer] == test.handCount[currentPlayer])
+        // {
+        //     printf("Pass: handCount Unchanged\n");
+        // }
+        // else
+        // {
+        //     printf("Fail: handCount NOT Unchanged\n");
+        // }
 
 
         // discardCount should increment by only 1 since the choice1 card should be trashed, not discarded, but mine and discard don't do that, so not relevant for this bug
