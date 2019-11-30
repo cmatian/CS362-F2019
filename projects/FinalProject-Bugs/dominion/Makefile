@@ -15,16 +15,36 @@ unit1: dominion.o unit1.c
 	printf "\n************************************************\n\n\n" >> unittestresults.out
 
 unit2: dominion.o unit2.c
+	printf "*****************  Unit Test 2 *****************\n\n" >> unittestresults.out
 	gcc -o unit2 unit2.c -g dominion.o rngs.o $(CFLAGS)
+	./unit2 >> unittestresults.out
+	printf "\n\nGCOV Results:\n">> unittestresults.out
+	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
 
 unit3: dominion.o unit3.c
+	printf "*****************  Unit Test 3 *****************\n\n" >> unittestresults.out
 	gcc -o unit3 unit3.c -g dominion.o rngs.o $(CFLAGS)
+	./unit3 >> unittestresults.out
+	printf "\n\nGCOV Results:\n">> unittestresults.out
+	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
 
 unit4: dominion.o unit4.c
+	printf "*****************  Unit Test 4 *****************\n\n" >> unittestresults.out
 	gcc -o unit4 unit4.c -g dominion.o rngs.o $(CFLAGS)
+	./unit4 >> unittestresults.out
+	printf "\n\nGCOV Results:\n">> unittestresults.out
+	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
 
 unit5: dominion.o unit5.c
+	printf "*****************  Unit Test 5 *****************\n\n" >> unittestresults.out
 	gcc -o unit5 unit5.c -g dominion.o rngs.o $(CFLAGS)
+	./unit5 >> unittestresults.out
+	printf "\n\nGCOV Results:\n">> unittestresults.out
+	gcov -b -f dominion.c | grep cardEffect -A 4 >> unittestresults.out
+	printf "\n************************************************\n\n\n" >> unittestresults.out
 
 unit6: dominion.o unit6.c
 	printf "*****************  Unit Test 6 *****************\n\n" >> unittestresults.out
