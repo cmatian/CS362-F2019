@@ -1202,10 +1202,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
             return -1;
         }
-
         for (i = 0; i < state->handCount[currentPlayer]; i++)
         {
-            if (i != handPos && state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1] && i != choice1)
+            if (i != handPos && state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
             {
                 j++;
             }
