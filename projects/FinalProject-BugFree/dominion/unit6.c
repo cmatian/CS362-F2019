@@ -11,7 +11,7 @@
 
 int main()
 {
-	printf("unit test 1: Adventurer\n");
+	printf("unit test 6: Adventurer\n");
     srand(time(NULL));
 
     struct gameState state, test;
@@ -32,15 +32,15 @@ int main()
         printf("initializeGame\n");
         initializeGame(numPlayers, k, seed, &state);
 
-        int card = mine;
-        int choice1 = adventurer;
-        int choice2 = silver;
-        int choice3 = 0;
-
+        int card = feast;
+        int choice1Index = 1;
+        int choice2Index = 2;
+        int choice3Index = 3;
+        
         state.handCount[currentPlayer] = cardsInHands;
         state.handCount[nextPlayer] = cardsInHands;
-        state.hand[currentPlayer][choice1] = choice1;
-        state.hand[currentPlayer][choice2] = choice2; 
+        state.hand[currentPlayer][choice1Index] = adventurer;
+        state.hand[currentPlayer][choice2Index] = 0; 
         // unnecessary to remove cards beyond the number of cardsInHands and any other set cards
         // for (int j = cardsInHands; j < cardsInHands - 1; j++) {
         //     state.hand[currentPlayer][j] = -1;
@@ -48,7 +48,7 @@ int main()
 
         state.coins = 1;
 
-        printHand(0, &state);
+        //printHand(0, &state);
 
 		printf("memcpy\n");
         memcpy(&test, &state, sizeof(struct gameState));
@@ -67,36 +67,36 @@ int main()
             // }
 
         // cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
-        cardEffect(feast, choice1, 0, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
+        cardEffect(card, choice1Index, 0, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
 
         // discardCount should increment by only one, NOT two, since the card shouldn't be allowed to be purchased
         if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1)) 
         {
             printf("Pass: discardCount Incremented by 1 and ONLY 1\n");
             
-        //     // last card in discard pile should NOT be an adventurer
-        //     if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == adventurer)
-        //     {
-        //         printf("Fail: adventurer successfully purchased\n");
-        //     }
-        //     else
-        //     {
-        //         printf("Pass: adventurer NOT successfully purchased\n");
-        //     }
-        // }
-        // else if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 2))
-        // {
-        //     printf("Fail: discardCount Incremented by 2\n");
+            // last card in discard pile should NOT be an adventurer
+            if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == adventurer)
+            {
+                printf("Fail: adventurer successfully purchased\n");
+            }
+            else
+            {
+                printf("Pass: adventurer NOT successfully purchased\n");
+            }
+        }
+        else if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 2))
+        {
+            printf("Fail: discardCount Incremented by 2\n");
 
-        //     // last card in discard pile should NOT be an adventurer
-        //     if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == adventurer)
-        //     {
-        //         printf("Fail: adventurer successfully purchased\n");
-        //     }
-        //     else
-        //     {
-        //         printf("Pass: adventurer NOT successfully purchased\n");
-        //     }
+            // last card in discard pile should NOT be an adventurer
+            if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == adventurer)
+            {
+                printf("Fail: adventurer successfully purchased\n");
+            }
+            else
+            {
+                printf("Pass: adventurer NOT successfully purchased\n");
+            }
         }
         else
         {

@@ -33,10 +33,15 @@ int main()
         printf("initializeGame\n");
         initializeGame(numPlayers, k, seed, &state);
 
+        int card = mine;
+        int choice1Index = 1;
+        int choice2Index = 2;
+        int choice3Index = 3;
+        
         state.handCount[currentPlayer] = cardsInHands;
         state.handCount[nextPlayer] = cardsInHands;
-        state.hand[currentPlayer][handPos] = mine;
-        state.hand[currentPlayer][handPos - 1] = copper; 
+        state.hand[currentPlayer][choice1Index] = copper;
+        state.hand[currentPlayer][choice2Index] = silver; 
 
         printHand(0, &state);
 
@@ -44,16 +49,16 @@ int main()
         memcpy(&test, &state, sizeof(struct gameState));
         
         // cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
-        cardEffect(state.hand[currentPlayer][handPos], state.hand[currentPlayer][handPos - 1], silver, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
+        cardEffect(card, choice1Index, choice2Index, choice3Index, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
 
         // playedCardCount should increment by only 1 since the choice1 card should be trashed, not discarded
         if (state.playedCardCount == (test.playedCardCount + 1)) 
         {
-            printf("Pass: playedCardCount Unchanged\n");
+            printf("Pass: playedCardCount Incremented\n");
         }
         else
         {
-            printf("Fail: playedCardCount NOT Unchanged\n");
+            printf("Fail: playedCardCount NOT Incremented\n");
         }
 
         // handCount should stay the same since replacing, but not really that relevant to this test case
