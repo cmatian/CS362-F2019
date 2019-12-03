@@ -819,10 +819,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
           printf("backing up card: %d\n", state->hand[currentPlayer][i]);
             temphand[i] = state->hand[currentPlayer][i]; //Backup card
-            state->hand[currentPlayer][i] = -1;          //Set to nothing
+            //state->hand[currentPlayer][i] = -1;          //Set to nothing
         }
         //Backup hand
-
         //Update Coins for Buy
         //updateCoins(currentPlayer, state, 5);
         x = 1; //Condition to loop on
@@ -832,20 +831,17 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             {
                     printf("None of that card left, sorry!\n");
                     printf("Cards Left: %d\n", supplyCount(choice1, state));
-
                 return -1;
             }
             else if (5 < getCost(choice1))
             {
                 printf("That card is too expensive!\n");
-                    printf("Coins: %d < %d\n\n", state->coins, getCost(choice1));
-
+                    printf("Coins: %d < %d\n\n", 5, getCost(choice1));
                 return -1;
             }
             else
             {
                 printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
-
                 gainCard(choice1, state, 0, currentPlayer); //Gain the card
                 x = 0;                                      //No more buying cards
 
