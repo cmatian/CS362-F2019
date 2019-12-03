@@ -18,7 +18,7 @@ int main()
     int currentPlayer = state.whoseTurn;
     int nextPlayer = currentPlayer + 1;
     int tests = 1,
-    seed = 30,
+    seed = 1000,
     handPos = 4,
     numPlayers = 2,
     cardsInHands = 5;
@@ -26,18 +26,21 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                  minion, tribute, village, baron, province};
 
-    for (int i = 0; i < tests; i++)
-    {
-        printf("\n*** Begin Test %d / %d ***\n", i+1, tests);
+        printf("\n*** Begin Test %d / %d ***\n", 1, tests);
         memset(&state, 23, sizeof(struct gameState));
 
         printf("initializeGame\n");
         initializeGame(numPlayers, k, seed, &state);
 
+        int card = mine;
+        int choice1 = adventurer;
+        int choice2 = silver;
+        int choice3 = 0;
+
         state.handCount[currentPlayer] = cardsInHands;
         state.handCount[nextPlayer] = cardsInHands;
-        state.hand[currentPlayer][handPos] = feast;
-        state.hand[currentPlayer][handPos - 1] = copper;
+        state.hand[currentPlayer][choice1] = choice1;
+        state.hand[currentPlayer][choice2] = choice2; 
         // unnecessary to remove cards beyond the number of cardsInHands and any other set cards
         // for (int j = cardsInHands; j < cardsInHands - 1; j++) {
         //     state.hand[currentPlayer][j] = -1;
@@ -50,22 +53,21 @@ int main()
 		printf("memcpy\n");
         memcpy(&test, &state, sizeof(struct gameState));
 
-            int choice1 = adventurer;
-            if (supplyCount(choice1, &state) <= 0) {
-                    printf("None of that card left, sorry!\n");
-                    printf("Cards Left: %d\n", supplyCount(choice1, &state));
-            }
-            else if (state.coins < getCost(choice1)) {
-                printf("That card is too expensive!\n");
-                    printf("Coins: %d < %d\n", state.coins, getCost(choice1));
-            }
-            else if (state.coins >= getCost(choice1)) {
-                printf("That card is affordable!\n");
-                    printf("Coins: %d >= %d\n", state.coins, getCost(choice1));
-            }
+            // if (supplyCount(choice1, &state) <= 0) {
+            //         printf("None of that card left, sorry!\n");
+            //         printf("Cards Left: %d\n", supplyCount(choice1, &state));
+            // }
+            // else if (state.coins < getCost(choice1)) {
+            //     printf("That card is too expensive!\n");
+            //         printf("Coins: %d < %d\n", state.coins, getCost(choice1));
+            // }
+            // else if (state.coins >= getCost(choice1)) {
+            //     printf("That card is affordable!\n");
+            //         printf("Coins: %d >= %d\n", state.coins, getCost(choice1));
+            // }
 
         // cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
-        cardEffect(state.hand[currentPlayer][handPos], choice1, 0, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
+        cardEffect(feast, choice1, 0, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
 
         // discardCount should increment by only one, NOT two, since the card shouldn't be allowed to be purchased
         if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1)) 
@@ -112,7 +114,6 @@ int main()
         // }
 
         printHand(0, &state);
-    }
 
     return 0;
 }
