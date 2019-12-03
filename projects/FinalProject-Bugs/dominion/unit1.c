@@ -25,35 +25,39 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                  minion, tribute, village, baron, great_hall};
 
-    for (int i = 0; i < tests; i++)
-    {
-        printf("\n*** Begin Test %d / %d ***\n", i+1, tests);
+        printf("\n*** Begin Test %d / %d ***\n", 1, tests);
         memset(&state, 23, sizeof(struct gameState));
 
         printf("initializeGame\n");
         initializeGame(numPlayers, k, seed, &state);
 
+				int card = mine;
+        int choice1 = copper;
+        int choice2 = silver;
+        int choice3 = 0;
+
         state.handCount[currentPlayer] = cardsInHands;
         state.handCount[nextPlayer] = cardsInHands;
-        state.hand[currentPlayer][handPos] = mine;
-        state.hand[currentPlayer][handPos - 1] = copper; 
+        state.hand[currentPlayer][choice1] = choice1;
+        state.hand[currentPlayer][choice2] = choice2;
+
 
         printHand(0, &state);
 
 		printf("memcpy\n");
         memcpy(&test, &state, sizeof(struct gameState));
-        
+
         // cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
-        cardEffect(state.hand[currentPlayer][handPos], state.hand[currentPlayer][handPos - 1], silver, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
+        cardEffect(card, choice1, choice2, choice3, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
 
         // playedCardCount should increment by only 1 since the choice1 card should be trashed, not discarded
-        if (state.playedCardCount == (test.playedCardCount + 1)) 
+        if (state.playedCardCount == (test.playedCardCount + 1))
         {
-            printf("Pass: playedCardCount Unchanged\n");
+            printf("Pass: playedCardCount Incremented\n");
         }
         else
         {
-            printf("Fail: playedCardCount NOT Unchanged\n");
+            printf("Fail: playedCardCount NOT Incremented\n");
         }
 
         // handCount should stay the same since replacing, but not really that relevant to this test case
@@ -68,7 +72,7 @@ int main()
 
 
         // discardCount should increment by only 1 since the choice1 card should be trashed, not discarded, but mine and discard don't do that, so not relevant for this bug
-        // if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1)) 
+        // if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1))
         // {
         //     printf("Pass: discardCount Unchanged\n");
         // }
@@ -82,7 +86,6 @@ int main()
         // supplyCount should decrement, but mine and discard don't do that, only gaincard does, so not relevant for this bug
 
         printHand(0, &state);
-    }
 
     return 0;
 }
