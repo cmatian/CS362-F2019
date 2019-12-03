@@ -32,7 +32,7 @@ int main()
         printf("initializeGame\n");
         initializeGame(numPlayers, k, seed, &state);
 				int card = feast;
-				int choice1Card = council_room;
+				int choice1Card = adventurer;
         int choice1Index = 1;
         int choice2Index = 2;
         int choice3Index = 3;
@@ -40,13 +40,15 @@ int main()
         state.handCount[currentPlayer] = cardsInHands;
         state.handCount[nextPlayer] = cardsInHands;
         state.hand[currentPlayer][4] = card;
+
+				printf("attempting to add this card to discard pile: %d\n\n", state.hand[currentPlayer][4]);
         //state.hand[currentPlayer][choice1Index] = choice1Card;
         // unnecessary to remove cards beyond the number of cardsInHands and any other set cards
         // for (int j = cardsInHands; j < cardsInHands - 1; j++) {
         //     state.hand[currentPlayer][j] = -1;
         // }
 
-        state.coins = 1;
+        //state.coins = 1;
 
         //printHand(0, &state);
 				printDiscard(0, &state);
@@ -57,14 +59,12 @@ int main()
             if (supplyCount(choice1Card, &state) <= 0) {
                     printf("None of that card left, sorry!\n");
                     printf("Cards Left: %d\n", supplyCount(choice1Card, &state));
-										return -1;
             }
-            else if (state.coins < getCost(choice1Card)) {
-                printf("That card is too expensive!\n");
-                    printf("Coins: %d < %d\n", state.coins, getCost(choice1Card));
-										return -1;
-            }
-            else if (state.coins >= getCost(choice1Card)) {
+            // else if (state.coins < getCost(choice1Card)) {
+            //     printf("That card is too expensive!\n");
+            //         printf("Coins: %d < %d\n", state.coins, getCost(choice1Card));
+            // }
+            else if (5 >= getCost(choice1Card)) {
                 printf("That card is affordable!\n");
                 printf("Coins: %d >= %d\n", state.coins, getCost(choice1Card));
             }
@@ -73,38 +73,33 @@ int main()
         cardEffect(card, choice1Card, 0, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
 
         // discardCount should increment by only one, NOT two, since the card shouldn't be allowed to be purchased
-        if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1))
+        if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1) && state.discard[currentPlayer][state.discardCount[currentPlayer] - 1] == choice1Card)
         {
-            printf("Pass: discardCount Incremented by 1 and ONLY 1\n");
-
-            // last card in discard pile should NOT be an adventurer
-            if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == choice1Card)
-            {
-                printf("Fail: adventurer successfully purchased\n");
-            }
-            else
-            {
-                printf("Pass: adventurer NOT successfully purchased\n");
-            }
-        }
-        else if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 2))
-        {
-            printf("Fail: discardCount Incremented by 2\n");
-
-            // last card in discard pile should NOT be an adventurer
-            if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == choice1Card)
-            {
-                printf("Fail: adventurer successfully purchased\n");
-            }
-            else
-            {
-                printf("Pass: adventurer NOT successfully purchased\n");
-            }
+            printf("Fail: adventurer successfully purchased\n");
         }
         else
         {
-            printf("Fail: discardCount NOT Incremented by 1 and ONLY 1\n");
+            printf("Pass: adventurer NOT successfully purchased\n");
         }
+
+        // 	else if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 2))
+        // {
+        //     printf("Fail: discardCount Incremented by 2\n");
+				//
+        //     // last card in discard pile should NOT be an adventurer
+        //     if (state.discard[currentPlayer][state.discardCount[currentPlayer]] == choice1Card)
+        //     {
+        //         printf("Fail: adventurer successfully purchased\n");
+        //     }
+        //     else
+        //     {
+        //         printf("Pass: adventurer NOT successfully purchased\n");
+        //     }
+        // }
+        // else
+        // {
+        //     printf("Fail: discardCount NOT Incremented by 1 and ONLY 1\n");
+        // }
 
         // handCount should decrement, but not really that relevant to this test case
         // if (state.handCount[currentPlayer] == (test.handCount[currentPlayer] - 1))
