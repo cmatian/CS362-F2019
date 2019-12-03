@@ -89,4 +89,4 @@ unit11:
 unittestresults: unit1 unit2 unit3 unit4 unit5 unit6 unit7 unit9 unit10 unit11
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.exe unit1 unit2 unit3 unit4 unit5 unit6 unit7 unit9 unit10 unit11
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.exe unit1 unit2 unit3 unit4 unit5 unit6 unit7 unit9 unit10 unit11 unittestresults.out
