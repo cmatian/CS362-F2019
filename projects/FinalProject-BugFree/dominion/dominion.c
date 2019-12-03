@@ -812,13 +812,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 
     case feast:
-    // printf("feasting, cur player: %d\n\n", currentPlayer);
+        // printf("feasting, cur player: %d\n\n", currentPlayer);
 
         //gain card with cost up to 5
         //Backup hand
         for (i = 0; i < state->handCount[currentPlayer]; i++)
         {
-          // printf("backing up card: %d\n", state->hand[currentPlayer][i]);
+            // printf("backing up card: %d\n", state->hand[currentPlayer][i]);
             temphand[i] = state->hand[currentPlayer][i]; //Backup card
             //state->hand[currentPlayer][i] = -1;          //Set to nothing
         }
@@ -830,8 +830,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         { //Buy one card
             if (supplyCount(choice1, state) <= 0)
             {
-                    // printf("None of that card left, sorry!\n");
-                    // printf("Cards Left: %d\n", supplyCount(choice1, state));
+                // printf("None of that card left, sorry!\n");
+                // printf("Cards Left: %d\n", supplyCount(choice1, state));
                 return -1;
             }
             else if (5 < getCost(choice1))
@@ -1441,21 +1441,22 @@ int updateCoins(int player, struct gameState *state, int bonus)
     {
         if (state->hand[player][i] == copper)
         {
-          // printf("adding copper\n");
+            // printf("adding copper\n");
             state->coins += 1;
         }
         else if (state->hand[player][i] == silver)
         {
-          // printf("adding silver\n");
+            // printf("adding silver\n");
             state->coins += 2;
         }
         else if (state->hand[player][i] == gold)
         {
-          // printf("adding gold\n");
+            // printf("adding gold\n");
             state->coins += 3;
         }
-        else{
-          // printf("adding nada\n");
+        else
+        {
+            // printf("adding nada\n");
         }
     }
 
