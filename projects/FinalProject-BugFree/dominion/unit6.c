@@ -15,7 +15,7 @@ int main()
     srand(time(NULL));
 
     struct gameState state, test;
-    int currentPlayer = state.whoseTurn;
+    int currentPlayer = 0;
     int nextPlayer = currentPlayer + 1;
     int tests = 1,
     seed = 1000,
@@ -39,7 +39,7 @@ int main()
         
         state.handCount[currentPlayer] = cardsInHands;
         state.handCount[nextPlayer] = cardsInHands;
-        state.hand[currentPlayer][choice1Index] = adventurer;
+        state.hand[currentPlayer][choice1Index] = copper;
         state.hand[currentPlayer][choice2Index] = 0; 
         // unnecessary to remove cards beyond the number of cardsInHands and any other set cards
         // for (int j = cardsInHands; j < cardsInHands - 1; j++) {
