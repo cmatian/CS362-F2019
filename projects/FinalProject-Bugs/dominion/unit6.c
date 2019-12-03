@@ -48,9 +48,10 @@ int main()
         //     state.hand[currentPlayer][j] = -1;
         // }
 
-        //state.coins = 1;
-
-        //printHand(0, &state);
+        state.coins = 2;
+				printf("Coins: %d \n", state.coins);
+				printf("state.handCount[currentPlayer]: %d\n", state.handCount[currentPlayer]);
+        printHand(0, &state);
 				printDiscard(0, &state);
 
 		printf("memcpy\n");
@@ -71,6 +72,17 @@ int main()
 
         // cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
         cardEffect(card, choice1Card, 0, 0, &state, handPos, 0); // card we play; choice1, choice2, choice3 are related to the card we play: copper = 4, silver = 5; handPos = position of card we play; bonus is BS
+
+				printf("state.playedCardCount: %d\n", state.playedCardCount);
+				printf("state.playedCards[state.playedCardCount - 1]: %d\n", state.playedCards[state.playedCardCount - 1]); // choice2 that you trash
+				printf("state.playedCards[state.playedCardCount - 2]: %d\n", state.playedCards[state.playedCardCount - 2]); // treasure card that you play
+
+				printf("state.handCount[currentPlayer]: %d\n", state.handCount[currentPlayer]);
+				printf("state.discardCount[currentPlayer]: %d\n", state.discardCount[currentPlayer]);
+				printf("state.hand[currentPlayer][0]: %d\n", state.hand[currentPlayer][0]);
+				printPlayed(0, &state);
+				printDiscard(0, &state);
+				printHand(0, &state);
 
         // discardCount should increment by only one, NOT two, since the card shouldn't be allowed to be purchased
         if (state.discardCount[currentPlayer] == (test.discardCount[currentPlayer] + 1) && state.discard[currentPlayer][state.discardCount[currentPlayer] - 1] == choice1Card)
