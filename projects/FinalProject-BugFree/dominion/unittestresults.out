@@ -1,0 +1,191 @@
+*****************  Unit Test 1 *****************
+
+unit test 1: Mine
+
+ Pass: only 1 card added to played card count 
+
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:7.66% of 261
+Branches executed:18.05% of 205
+Taken at least once:4.39% of 205
+Calls executed:9.52% of 63
+
+************************************************
+
+
+*****************  Unit Test 2 *****************
+
+TESTING Bug 2:
+Returned Value: -1
+Expected Value: -1
+TEST PASSED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:5.36% of 261
+Branches executed:16.10% of 205
+Taken at least once:3.41% of 205
+Calls executed:4.76% of 63
+
+************************************************
+
+
+*****************  Unit Test 3 *****************
+
+TESTING Bug 3:
+Returned Value: -1
+Expected Value: -1
+TEST PASSED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:4.60% of 261
+Branches executed:12.20% of 205
+Taken at least once:1.46% of 205
+Calls executed:4.76% of 63
+
+************************************************
+
+
+*****************  Unit Test 4 *****************
+
+TESTING Bug 4:
+Returned Value: 1
+Expected Value: 1
+TEST PASSED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:0.00% of 261
+Branches executed:0.00% of 205
+Taken at least once:0.00% of 205
+Calls executed:0.00% of 63
+
+************************************************
+
+
+*****************  Unit Test 5 *****************
+
+TESTING Bug 5:
+Returned Value: 7
+Expected Value: 7
+TEST PASSED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:0.00% of 261
+Branches executed:0.00% of 205
+Taken at least once:0.00% of 205
+Calls executed:0.00% of 63
+
+************************************************
+
+
+*****************  Unit Test 6 *****************
+
+unit test 1: Feast
+Player 0's played cards: 
+
+Player 0's discard: 
+
+Player 0's hand:
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Copper       
+5  Copper       
+6  Feast        
+
+Pass: adventurer NOT successfully purchased
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:6.13% of 261
+Branches executed:15.12% of 205
+Taken at least once:3.41% of 205
+Calls executed:4.76% of 63
+
+************************************************
+
+
+*****************  Unit Test 7 *****************
+
+== Starting Unit Test for Tribute Card - Bug 7 ==
+PASS - Expected: Actions == 3	Actual: Actions == 3
+== End of Unit Test for Tribute Card - Bug 7 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:9.96% of 261
+Branches executed:24.88% of 205
+Taken at least once:8.78% of 205
+Calls executed:4.76% of 63
+
+************************************************
+
+
+*****************  Unit Test 9 *****************
+
+== Starting Unit Test for Tribute Card - Bug 9 ==
+PASS - Expected: Coins == 7, Actions == 1	Actual: Coins == 7, Actions == 1
+PASS - Expected: Handcount == 7, Actions == 1	Actual: Handcount == 7, Actions == 1
+PASS - Expected: Actions == 3	Actual: Actions == 3
+== End of Unit Test for Tribute Card - Bug 9 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:11.88% of 261
+Branches executed:24.88% of 205
+Taken at least once:10.24% of 205
+Calls executed:4.76% of 63
+
+************************************************
+
+
+*****************  Unit Test 10 *****************
+
+== Starting Unit Test for Ambassador Card - Bug 10 ==
+PASS - Expected: Return Code 0	Actual: Return Code 0
+== End of Unit Test for Ambassador Card - Bug 10 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:10.34% of 261
+Branches executed:22.93% of 205
+Taken at least once:10.73% of 205
+Calls executed:6.35% of 63
+
+************************************************
+
+
+*****************  Unit Test 11 *****************
+
+== Starting Unit Test for Minion Card - Bug 11 ==
+You must set choice1 or choice2 to 1 in order to play this card.
+FAIL - Expected: coins == 7	Actual: Coins == 5
+== End of Unit Test for Minion Card - Bug 11 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:4.60% of 261
+Branches executed:13.17% of 205
+Taken at least once:1.95% of 205
+Calls executed:3.17% of 63
+
+************************************************
+
+
