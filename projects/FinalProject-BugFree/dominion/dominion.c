@@ -813,6 +813,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case feast:
     // printf("feasting, cur player: %d\n\n", currentPlayer);
+
         //gain card with cost up to 5
         //Backup hand
         for (i = 0; i < state->handCount[currentPlayer]; i++)
@@ -846,7 +847,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                 x = 0;                                      //No more buying cards
 
                 // printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
-
             }
         }
 
