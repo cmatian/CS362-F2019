@@ -1,0 +1,217 @@
+*****************  Unit Test 1 *****************
+
+unit test 1: Mine
+
+*** Begin Test 1 / 1 ***
+initializeGame
+Player 0's hand:
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Mine         
+
+memcpy
+Fail: playedCardCount NOT Unchanged
+Player 0's hand:
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Mine         
+
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:4.63% of 259
+Branches executed:13.57% of 199
+Taken at least once:2.01% of 199
+Calls executed:1.56% of 64
+
+************************************************
+
+
+*****************  Unit Test 2 *****************
+
+TESTING Bug 2:
+Returned Value: 0
+Expected Value: -1
+TEST FAILED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:6.95% of 259
+Branches executed:18.59% of 199
+Taken at least once:5.03% of 199
+Calls executed:7.81% of 64
+
+************************************************
+
+
+*****************  Unit Test 3 *****************
+
+TESTING Bug 3:
+Returned Value: 0
+Expected Value: -1
+TEST FAILED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:6.95% of 259
+Branches executed:14.57% of 199
+Taken at least once:2.51% of 199
+Calls executed:9.38% of 64
+
+************************************************
+
+
+*****************  Unit Test 4 *****************
+
+TESTING Bug 4:
+Returned Value: 0
+Expected Value: 1
+TEST FAILED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:0.00% of 259
+Branches executed:0.00% of 199
+Taken at least once:0.00% of 199
+Calls executed:0.00% of 64
+
+************************************************
+
+
+*****************  Unit Test 5 *****************
+
+TESTING Bug 5:
+Returned Value: 6
+Expected Value: 7
+TEST FAILED
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:0.00% of 259
+Branches executed:0.00% of 199
+Taken at least once:0.00% of 199
+Calls executed:0.00% of 64
+
+************************************************
+
+
+*****************  Unit Test 6 *****************
+
+unit test 1: Adventurer
+
+*** Begin Test 1 / 1 ***
+initializeGame
+Player 0's hand:
+#  Card
+0  Copper       
+1  Copper       
+2  Copper       
+3  Copper       
+4  Feast        
+
+memcpy
+That card is too expensive!
+Coins: 1 < 6
+That card is too expensive!
+Fail: discardCount NOT Incremented by 1 and ONLY 1
+Player 0's hand:
+#  Card
+0  ?            
+1  ?            
+2  ?            
+3  ?            
+4  ?            
+
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:7.34% of 259
+Branches executed:15.58% of 199
+Taken at least once:3.52% of 199
+Calls executed:7.81% of 64
+
+************************************************
+
+
+*****************  Unit Test 7 *****************
+
+== Starting Unit Test for Tribute Card - Bug 7 ==
+FAIL - Expected: Actions == 3	Actual: Actions == 5
+== End of Unit Test for Tribute Card - Bug 7 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:9.65% of 259
+Branches executed:23.62% of 199
+Taken at least once:8.04% of 199
+Calls executed:4.69% of 64
+
+************************************************
+
+
+*****************  Unit Test 9 *****************
+
+== Starting Unit Test for Tribute Card - Bug 9 ==
+FAIL - Expected: Coins == 7, Actions == 1	Actual: Coins == 7, Actions == 3
+FAIL - Expected: Handcount == 7, Actions == 1	Actual: Handcount == 7, Actions == 5
+FAIL - Expected: Actions == 3	Actual: Actions == 5
+== End of Unit Test for Tribute Card - Bug 9 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:11.20% of 259
+Branches executed:23.62% of 199
+Taken at least once:9.05% of 199
+Calls executed:4.69% of 64
+
+************************************************
+
+
+*****************  Unit Test 10 *****************
+
+== Starting Unit Test for Ambassador Card - Bug 10 ==
+FAIL - Expected: Return Code 0	Actual: Return Code -1
+== End of Unit Test for Ambassador Card - Bug 10 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:6.18% of 259
+Branches executed:18.59% of 199
+Taken at least once:5.53% of 199
+Calls executed:1.56% of 64
+
+************************************************
+
+
+*****************  Unit Test 11 *****************
+
+== Starting Unit Test for Minion Card - Bug 11 ==
+FAIL - Expected: coins == 7	Actual: Coins == 5
+== End of Unit Test for Minion Card - Bug 11 ==
+
+
+GCOV Results:
+Function 'cardEffect'
+Lines executed:5.41% of 259
+Branches executed:13.57% of 199
+Taken at least once:2.01% of 199
+Calls executed:3.13% of 64
+
+************************************************
+
+
